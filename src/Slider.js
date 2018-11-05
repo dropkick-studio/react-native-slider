@@ -111,6 +111,11 @@ export default class Slider extends PureComponent {
       height: PropTypes.number,
     }),
 
+    thumbImageSize: PropTypes.shape({
+      width: PropTypes.number,
+      height: PropTypes.number,
+    }),
+
     /**
      * Callback continuously called while the user is dragging the slider.
      */
@@ -178,6 +183,7 @@ export default class Slider extends PureComponent {
     maximumTrackTintColor: '#b3b3b3',
     thumbTintColor: '#343434',
     thumbTouchSize: { width: 40, height: 40 },
+    thumbImageSize: { width: 0, height: 0 },
     debugTouchArea: false,
     animationType: 'timing',
   };
@@ -558,11 +564,11 @@ export default class Slider extends PureComponent {
   };
 
   _renderThumbImage = () => {
-    const { thumbImage } = this.props;
+    const { thumbImage, thumbImageSize } = this.props;
 
     if (!thumbImage) return;
 
-    return <Image source={thumbImage} />;
+    return <Image source={thumbImage} style={{ width: thumbImageSize.width, height: thumbImageSize.height }} />;
   };
 }
 
